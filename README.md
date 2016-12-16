@@ -4,7 +4,7 @@
 
 ## Running
 
-[Live Version](http://openjscad.org/#https://raw.githubusercontent.com/cole-hsv/leafblower-adapter/master/dist/leafblower.jscad">http://openjscad.org/#)
+[Live Version](http://openjscad.org/#https://raw.githubusercontent.com/cole-hsv/leafblower-adapter/master/dist/leafblower.jscad)
 
 The jscad project `leafblower` uses gulp to create a `dist/leafblower.jscad` file and watches your source for changes. You can drag the `dist/leafblower.jscad` directory into the drop area on [openjscad.org](http://openjscad.org). Make sure you check `Auto Reload` and any time you save, gulp will recreate the `dist/leafblower.jscad` file and your model should refresh.
 
