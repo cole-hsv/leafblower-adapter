@@ -65,7 +65,7 @@ function main(params) {
         collar: function collar() {
             var part = util.group();
 
-            var drain = [58.08, 78.12].map(x => x / 2);
+            var drain = [58.08, 75].map(x => x / 2);
             var drainRoundRadius = 15;
             part.add(util.poly2solid(
                     CAG.roundedRectangle({
@@ -109,7 +109,18 @@ function main(params) {
         }
     };
 
+
     return parts['adapter']();
+    // var adapter = parts['adapter']();
+    // var base = adapter
+    //     .bisect('z', 3).combine('positive')
+    //     .bisect('z', 5).combine('negative');
+    // return union(base,
+    //     adapter
+    //     .bisect('z', -5).combine('positive')
+    //     .snap(base, 'z', 'outside-')
+    //     // .bisect('z', -5).combine('negative')
+    // );
 
 }
 
