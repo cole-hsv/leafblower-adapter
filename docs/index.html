@@ -65,7 +65,7 @@
     function loadProcessor() {
       var element = document.getElementById("viewerContext");
       gProcessor = new OpenJsCad.Processor(element);
-      var filename = '/Users/johncole/src/jscad/leafblower/dist/leafblower.jscad';
+      var filename = 'leafblower.jscad';
       var xhr = new XMLHttpRequest();
       gProcessor.setStatus("Loading " + filename);
       xhr.open("GET", filename, true);
