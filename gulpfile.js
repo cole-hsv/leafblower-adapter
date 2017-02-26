@@ -27,7 +27,14 @@ gulp.task('inject', function () {
     .pipe(gulp.dest('dist'));
 });
 
-gulp.task('default', ['clean', 'inject'], function () {
+gulp.task('docs', ['inject'], function() {
+  return gulp.src('package.json')
+    .pipe(plugins.plumber())
+    .pipe(plugins.openjscadStandalone())
+    .pipe(gulp.dest('docs'));
+});
+
+gulp.task('default', ['clean', 'inject', 'docs'], function () {
   plugins.watch(['!**/*.*~', '!dist/*', '**/*.jscad', 'node_modules/'], {
     verbose: true,
     followSymlinks: true,

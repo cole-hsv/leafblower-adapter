@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+  <title>
+    An adaptor for a leafblower
+  </title>
+  <script src="jquery.js"></script>
+  <script src="marked.min.js"></script>
+  <script src="jquery.hammer.js"></script>
+  <script src="lightgl.js"></script>
+  <script src="csg.js"></script>
+  <script src="formats.js"></script>
+  <script src="openjscad.js"></script>
+  <script src="openscad.js"></script>
+  <script src="jscad-worker.js"></script>
+  <script src="jscad-function.js"></script>
+  <link rel="stylesheet" href="layout.css" type="text/css">
+  <link rel="stylesheet" href="themes/architect/css/style.css" type="text/css">
+</head>
+
+<body onload="loadProcessor()">
+  <!-- setup display of the errors as required by OpenJSCAD.js -->
+  <div class="jscad-container">
+    <div id="header">
+      <div id="errordiv"></div>
+    </div>
+
+    <!-- setup display of the viewer, i.e. canvas -->
+    <div oncontextmenu="return false;" id="viewerContext"></div>
+
+    <!-- setup display of the design parameters, as required by OpenJSCAD.js -->
+    <!-- set display: block to display this -->
+    <div id="parametersdiv" style="display: none;"></div>
+
+    <!-- setup display of the status, as required by OpenJSCAD.js -->
+    <!-- set display: block to display this -->
+    <div id="tail">
+      <div id="statusdiv"></div>
+    </div>
+  </div>
+
+  <div id="README">
+    <h1 id="leafblower">leafblower</h1>
+<blockquote>
+<p>An adaptor for a leafblower</p>
+</blockquote>
+<p>An adapter for a leafblower to connect a drainpipe and to a nozzel.</p>
+<h2 id="running">Running</h2>
+<p><a href="http://openjscad.org/#https://raw.githubusercontent.com/cole-hsv/leafblower-adapter/master/dist/leafblower.jscad">Live Version</a></p>
+<p>The jscad project <code>leafblower</code> uses gulp to create a <code>dist/leafblower.jscad</code> file and watches your source for changes. You can drag the <code>dist/leafblower.jscad</code> directory into the drop area on <a href="http://openjscad.org">openjscad.org</a>. Make sure you check <code>Auto Reload</code> and any time you save, gulp will recreate the <code>dist/leafblower.jscad</code> file and your model should refresh.</p>
+<h2 id="jscad-utils">jscad-utils</h2>
+<p>The example project uses <a href="https://www.npmjs.com/package/jscad-utils">jscad-utils</a>. This is a set of utilities that make object creation and alignment easier.</p>
+<h2 id="license">License</h2>
+<p>ISC © <a href="http://github.com/">John Cole</a></p>
+
+  </div>
+
+  <!-- define the design and the parameters -->
+  <script type="text/javascript">
+    var gProcessor = null; // required by OpenJScad.org
+
+    function loadProcessor() {
+      var element = document.getElementById("viewerContext");
+      gProcessor = new OpenJsCad.Processor(element);
+      var filename = '/Users/johncole/src/jscad/leafblower/dist/leafblower.jscad';
+      var xhr = new XMLHttpRequest();
+      gProcessor.setStatus("Loading " + filename);
+      xhr.open("GET", filename, true);
+      xhr.onload = function() {
+        var source = this.responseText;
+        gProcessor.setStatus("Processing " + filename);
+        gProcessor.setJsCad(source, filename);
+      }
+      xhr.send();
+    }
+  </script>
+
+</body>
+
+</html>

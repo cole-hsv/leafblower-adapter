@@ -28,7 +28,7 @@ function getParameterDefinitions() {
         captions: Object.keys(parts).map(function (key) {
             return parts[key];
         }),
-        initial: 'assembled',
+        initial: 'nozzel',
         caption: 'Part:'
     }];
 }
@@ -129,7 +129,7 @@ function main(params) {
 
             var nozzelbase = collarbase
                 .snap(collar.parts.base, 'z', 'outside+')
-                .color('blue');
+                .color('blue')
 
             var nozzel = util.poly2solid(
                     CAG.roundedRectangle({
@@ -162,12 +162,7 @@ function main(params) {
             ]);
         },
         assembled: function assembled() {
-            return union([
-              parts.leafblower().combine(), parts.collar().combine(),
-              parts.nozzel()
-                .rotateX(180)
-                .translate([0, 0, 100])
-            ]);
+            return union([parts.leafblower().combine(), parts.collar().combine()]);
         }
     };
 
